@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Estimator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 10px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        h3 {
+            color: #27ae60;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Estimator</h1>
+        <form action="/predict" method="POST">
+            <label for="house_quality">House Quality (1-10):</label>
+            <input type="number" id="house_quality" name="house_quality" min="1" max="10" required>
+
+            <label for="living_area">Living Area (sq ft):</label>
+            <input type="number" id="living_area" name="living_area" required>
+
+            <label for="garage_cars">Garage Cars:</label>
+            <input type="number" id="garage_cars" name="garage_cars" required>
+
+            <label for="basement_area">Basement Area (sq ft):</label>
+            <input type="number" id="basement_area" name="basement_area" required>
+
+            <input type="submit" value="Estimate Price">
+        </form>
+
+        {% if estimated_price %}
+            <h3>Estimated Price: {{ estimated_price }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
